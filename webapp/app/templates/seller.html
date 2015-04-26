@@ -6,8 +6,8 @@
       <tr valign="top">
           <td><img src="{{ user.avatar(128) }}"></td>
           <td>
-						<h1>User: {{ user.nickname }}</h1>
-							{% if user.about_me %}<p>{{ user.about_me }}</p>{% endif %}
+						<h1>Seller: {{ user.name }}</h1>
+							{% if user.about_us %}<p>{{ user.about_us }}</p>{% endif %}
 							{% if user.id == g.user.id %}<p><a href="{{ url_for('edit') }}">Edit</a></p>{% endif %}
 					</td>
       </tr>
@@ -16,7 +16,7 @@
   {% for book in books %}
 		<table>
     <tr valign="top">
-        <td><i>{{ book.user.nickname }} wants:</i><br>{{ book.title }}</td>
+        <td><i>{{ book.user.name }} is selling:</i><br>{{ book.title }}</td>
     </tr>
 		</table>
   {% endfor %}

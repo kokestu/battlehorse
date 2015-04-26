@@ -41,16 +41,26 @@ def login():
 @login_required
 def user(nickname):
     user = User.query.filter_by(nickname=nickname).first()
+    user = Seller.query.filter_by(name=nickname).first()
     if user == None:
-        flash('User %s is not found.' % nickname)
+        flash('User/Seller %s is not found.' % nickname)
         return redirect(url_for('index'))
-    posts = [
-        {'author': user, 'body': 'Test post #1'},
-        {'author': user, 'body': 'Test post #2'}
-    ]
+    books = user.books
     return render_template('user.html',
                            user=user,
-                           posts=posts)
+                           books=books)
+                           
+@app.route('/seller/<name>')
+@login_required
+def seller(name):
+    seller = Seller.query.filter_by(name=name).first()
+    if seller == None:
+        flash('Seller %s is not found.' % name)
+        return redirect(url_for('index'))
+    books = seller.books
+    return render_template('seller.html',
+                           user=seller,
+                           books=books)
                            
 @app.route('/logout')
 def logout():
@@ -79,24 +89,26 @@ def load_user(id):
 
 @oid.after_login
 def after_login(resp):
+    is_seller = False
+    if 'is_seller' in session:
+        is_seller = session['is_seller']
     if resp.email is None or resp.email == "":
         flash('Invalid login. Please try again.')
         return redirect(url_for('login'))
-    user = User.query.filter_by(email=resp.email).first()
+    if is_seller:
+        user = Seller.query.filter_by(email=resp.email).first()
+    else:
+        user = User.query.filter_by(email=resp.email).first()
     if user is None:
         nickname = resp.nickname
-        is_seller = False
-        if 'is_seller' in session:
-            is_seller = session['is_seller']
-            session.pop('is_seller', None)
         if nickname is None or nickname == "":
             nickname = resp.email.split('@')[0]
-        nickname = User.make_unique_nickname(nickname)
+        nickname = User.make_unique_nickname(nickname, is_seller)
         if is_seller:
-            new = Seller(name=nickname, email=resp.email)
+            user = Seller(name=nickname, email=resp.email)
         else:
-            new = User(nickname=nickname, email=resp.email)
-        db.session.add(new)
+            user = User(nickname=nickname, email=resp.email)
+        db.session.add(user)
         db.session.commit()
     remember_me = False
     if 'remember_me' in session:

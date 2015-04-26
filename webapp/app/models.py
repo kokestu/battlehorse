@@ -27,7 +27,6 @@ class User(db.Model):
                             secondary=users_association_table,
                             backref='users')
     about_me = db.Column(db.String(140))
-    last_seen = db.Column(db.DateTime)
     
     def is_authenticated(self):
         return True
@@ -52,16 +51,27 @@ class User(db.Model):
         return '<User %r>' % (self.nickname)
         
     @staticmethod
-    def make_unique_nickname(nickname):
-        if User.query.filter_by(nickname=nickname).first() is None:
-            return nickname
-        version = 2
-        while True:
-            new_nickname = nickname + str(version)
-            if User.query.filter_by(nickname=new_nickname).first() is None:
-                break
-            version += 1
-        return new_nickname
+    def make_unique_nickname(nickname, is_seller):
+        if is_seller:
+            if Seller.query.filter_by(name=nickname).first() is None:
+                return nickname
+            version = 2
+            while True:
+                new_nickname = nickname + str(version)
+                if Seller.query.filter_by(name=new_nickname).first() is None:
+                    break
+                version += 1
+            return new_nickname
+        else:
+            if User.query.filter_by(nickname=nickname).first() is None:
+                return nickname
+            version = 2
+            while True:
+                new_nickname = nickname + str(version)
+                if User.query.filter_by(nickname=new_nickname).first() is None:
+                    break
+                version += 1
+            return new_nickname
         
 class Seller(db.Model):
     id = db.Column(db.Integer, primary_key=True)
