@@ -13,11 +13,22 @@
       </tr>
   </table>
   <hr>
-  {% for book in books %}
-		<table>
-    <tr valign="top">
-        <td><i>{{ book.user.name }} is selling:</i><br>{{ book.title }}</td>
-    </tr>
-		</table>
-  {% endfor %}
+  <table>
+    {% for book in books %}
+        <tr valign="top">
+            {% if book.users[0] %}
+            <td><i>{{ book.users[0].nickname }}{% for u in book.users[1:-1] %}, {{ u.nickname }}{% endfor %}
+                {% if book.users[1] %} and {{ book.users[-1].nickname }}{% endif %} want{% if not book.users[1] %}s{% endif %}:</i></td>
+            {% endif %}
+            {% if book.sellers[0] %}
+            <td><i>{{ book.sellers[0].nickname }}{% for u in book.sellers[1:-1] %}, {{ u.nickname }}{% endfor %}
+                {% if book.sellers[1] %} and {{ book.sellers[-1].nickname }}{% endif %} sell{% if not book.sellers[1] %}s{% endif %}:</i></td>
+            {% endif %}
+            <td>
+                <br>{{ book.title }} <i>by</i> {{ book.author }}
+                <br>ISBN: {{ book.isbn }}
+            </td>
+        </tr>
+    {% endfor %}
+  </table>
 {% endblock %}

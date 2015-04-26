@@ -36,6 +36,9 @@ class User(db.Model):
     
     def is_anonymous(self):
         return False
+
+    def is_seller(self):
+        return False
     
     def get_id(self):
         try:
@@ -90,6 +93,9 @@ class Seller(db.Model):
     
     def is_anonymous(self):
         return False
+
+    def is_seller(self):
+        return True
     
     def get_id(self):
         try:

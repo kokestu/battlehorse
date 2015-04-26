@@ -1,0 +1,32 @@
+{%  extends 'base.html'  %}
+
+{%  block content %}
+    <h1>Add a book</h1>
+    <form action="" method="post" name="addBook">
+        {{ form.hidden_tag() }}
+        {% for error in form.errors %}
+		<br><span style="color: red;">[{{ error }}]</span>
+		{% endfor %}
+        <table>
+            {% if form.isbn %}
+            <tr>
+                <td>ISBN:</td>
+                <td>{{ form.isbn }}</td>
+            </tr>
+            {%  endif %}
+            {% if form.title %}
+            <tr>
+                <td>Title:</td>
+                <td>{{ form.title }}</td>
+            </tr>
+            {% endif %}
+            {% if form.author %}
+            <tr>
+                <td>Author:</td>
+                <td>{{ form.author }}</td>
+            </tr>
+            {% endif %}
+        </table>
+        <p><input type="submit" value="add book"></p>
+    </form>
+{% endblock %}

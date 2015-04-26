@@ -1,30 +1,94 @@
-body, h1 {
-    margin: 0px;
+html {
+    background-color: midnightblue;
+    font-family: verdana, arial, helvetica, sans-serif;
 }
 
-.page {
-    margin: 0px;
-    background-color: aliceblue;
+body, h1 {
+    center: 50%;
+    width: 1000px;
+    max-width: 100%;
+    margin: 0px auto;
 }
 
 #header {
-    margin: 0px;
+    width: 200px;
+    height: 200px;
+    margin: auto;
+    background-color: transparent;
+}
+
+#header-img {
+    text-indent: -9999px;
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    background: url('battlehorse+text+soft.png') no-repeat scroll top;
+    background-size: 200px 200px;
+}
+
+#page {
+    background-color: white;
+    box-shadow: 10px 10px 10px black;
+}
+
+#navbar {
+    background-color: cornflowerblue;
+    text-align: center;
+    font-size: 1.5em;
+    padding: 2px 0;
+}
+
+#navbar a {
+    text-decoration: none;
     background-color: lightblue;
-    border-bottom: 5px solid cornflowerblue;
+    padding: 2px 0.5em;
+}
+
+#navbar a:hover {
+    background-color: cornflowerblue;
+}
+
+#flashed {
+    margin: 0 auto;
+    background-color: powderblue;
+    color: red;
     text-align: center;
 }
 
 #content {
+    padding: 1em;
     text-align: center;
 }
 
-img {
-    height: 100px;
-    width: 100px;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
+#content form {
+    line-height: 200%;
+    background-color: beige;
+    margin: 0 auto;
+    width: 600px;
+    max-width: 80%;
+    padding: 20px 20px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border: 2px solid bisque;
+    box-shadow: 5px 5px 2px grey;
+}
+
+#content form #openid {
+    max-width: 100%;
+}
+
+#content form a {
+    background-color: lightblue;
+    border: 2px solid cornflowerblue;
+    -webkit-border-radius: 26px;
+    -moz-border-radius: 26px;
+    padding: 5px 10px;
+}
+
+#footer {
+    color: white;
+    text-align: center;
+    margin: 1em auto;
 }
 
 #lizziewrapper {

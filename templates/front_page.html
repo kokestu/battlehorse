@@ -1,5 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
     <p>no horses were harmed in the making of battlehorse</p>
-    <img id="lizzie" src="{{ url_for('static', filename='lizzie.jpg') }}" alt="GOD SAVE OUR GRACIOUS QUEEN">
+    <div id="lizziewrapper">
+        <img id="lizzie" src="{{ url_for('static', filename='lizzie.jpg') }}" alt="GOD SAVE OUR GRACIOUS QUEEN">
+    </div>
 {% endblock %}
