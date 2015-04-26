@@ -1,0 +1,55 @@
+body, h1 {
+    margin: 0px;
+    background-color: fff;
+}
+
+.page {
+
+}
+
+#header {
+    margin: 0px;
+    background-color: lightblue;
+    border-bottom: 5px solid cornflowerblue;
+    text-align: center;
+}
+
+img {
+    height: 100px;
+    width: 100px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+}
+
+#lizzie {
+    -webkit-animation: spinner 4s linear infinite;
+    -moz-animation: spinner 4s linear infinite;
+    -ms-animation: spinner 4s linear infinite;
+    -o-animation: spinner 4s linear infinite;
+    animation: spinner 4s linear infinite;
+}
+
+/* Animation */
+@-webkit-keyframes spinner {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+@-moz-keyframes spinner {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+@-ms-keyframes spinner {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+@-o-keyframes spinner {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+@keyframes spinner {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
